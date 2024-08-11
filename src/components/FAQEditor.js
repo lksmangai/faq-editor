@@ -87,9 +87,11 @@ const FAQEditor = () => {
     reader.onload = (e) => {
       try {
         const data = JSON.parse(e.target.result);
+        
+        //console.log(data);
         loadFAQData(data, setCategories, setQuestions);
       } catch (error) {
-        alert('Failed to load file. Please ensure it is a valid JSON.');
+        alert('Failed to load file. Please ensure it is a valid JSON.'+error);
       }
     };
     
