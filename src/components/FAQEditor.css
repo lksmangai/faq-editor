@@ -1,97 +1,125 @@
 /* FAQ Editor Container */
 .faq-editor {
   font-family: Arial, sans-serif;
-  color: #333;
-  background-color: #f9f9f9;
+  color: #222;
+  background-color: #ffffff;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column; /* Stack rows vertically */
+  gap: 20px; /* Space between rows */
+}
+
+/* First Row (first-grid) */
+.first-grid {
+  display: flex;
+  flex-direction: column; /* Stack controls vertically */
+  align-items: center; /* Center controls horizontally */
+}
+
+/* File Upload and Export Controls */
+.faq-editor__controls {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between controls */
+}
+
+/* Second Row (second-grid) */
+.second-grid {
+  display: flex;
+  flex-direction: row; /* Display columns side by side */
+  gap: 20px; /* Space between columns */
+}
+
+/* Category and Question Sections */
+.faq-editor__category-section,
+.faq-editor__questions-section {
+  flex: 1; /* Allow sections to grow equally */
+  min-width: 300px; /* Minimum width for responsiveness */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  margin: 20px auto;
+  border-radius: 8px;
+  padding: 20px; /* Add padding to sections */
+}
+
+/* Question Section */
+.faq-editor__question-section {
+  flex: 0 0 35%; /* Take 35% of the width */
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-editor__question-label {
+  flex: 1;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.faq-editor__question input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 0;
+}
+
+/* Editor Section */
+.faq-editor__editor-section {
+  flex: 1 1 65%; /* Take 65% of the width */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Textarea */
+.faq-editor__textarea {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+/* Category List */
+.category-list {
+  margin-top: 10px;
 }
 
 /* Heading Styles */
 .faq-editor__heading {
-  font-size: 1.8em;
-  margin-bottom: 10px;
-  color: #444;
-}
-
-/* Category Styles */
-.faq-editor__category {
-  margin-bottom: 20px;
+  font-size: 2em;
+  margin-bottom: 15px;
+  color: #333;
 }
 
 .faq-editor__category-heading {
-  font-size: 1.4em;
+  font-size: 1.5em;
   margin-bottom: 8px;
   padding-bottom: 4px;
-  border-bottom: 2px solid #ddd;
-}
-
-.faq-editor__category-heading input {
-  font-size: 1.4em;
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border-bottom: 2px solid #ccc;
 }
 
 /* Questions List */
 .faq-editor__questions {
   list-style: none;
   padding-left: 0;
+  margin-top: 10px;
 }
 
 .faq-editor__questions li {
-  padding: 10px;
+  padding: 12px;
   margin-bottom: 10px;
-  background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s;
 }
 
 .faq-editor__questions li:hover {
-  background-color: #f1f1f1;
-}
-
-/* Question and Answer Styles */
-.faq-editor__question {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.faq-editor__question-label {
-  flex: 1;
-  font-weight: bold;
-}
-
-.faq-editor__question input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin-left: 10px;
-}
-
-.faq-editor__answer {
-  margin-top: 10px;
-}
-
-/* JoditEditor Textarea */
-.faq-editor__textarea {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1em;
-  box-sizing: border-box;
-  resize: vertical;
+  background-color: #e9ecef;
 }
 
 /* Buttons */
@@ -113,7 +141,7 @@
   background-color: #0056b3;
 }
 
-/* Button for Deletion */
+/* Button Variants */
 .faq-editor__button--danger {
   background-color: #dc3545;
 }
@@ -122,7 +150,6 @@
   background-color: #c82333;
 }
 
-/* Add and Save Button Styles */
 .faq-editor__add-button {
   background-color: #28a745;
 }
@@ -147,46 +174,14 @@
   cursor: grab;
 }
 
-/* File Upload Button */
+/* File Upload */
 .faq-editor__file-input {
   margin-bottom: 20px;
 }
 
-/* General Utility Classes */
-.faq-editor__input {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1em;
-  box-sizing: border-box;
-}
-
-.faq-editor__container {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Error Message Styles */
-.faq-editor__error {
-  color: #dc3545;
-  margin-bottom: 10px;
-}
-
-/* Success Message Styles */
-.faq-editor__success {
-  color: #28a745;
-  margin-bottom: 10px;
-}
-
 /* Drag and Drop Placeholder */
 .faq-editor__placeholder {
-  padding: 10px;
+  padding: 12px;
   background-color: #e9ecef;
   border: 2px dashed #007bff;
   border-radius: 4px;
@@ -196,7 +191,7 @@
   cursor: pointer;
 }
 
-/* Answer List Styles */
+/* Answer List */
 .answer-list {
   padding: 0;
 }
@@ -205,11 +200,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 0px 12px;
   margin-bottom: 10px;
-  background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .list-item__content {
@@ -264,4 +258,23 @@
   margin-left: 15px;
   font-size: 1em;
   color: #495057;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 900px) {
+  .faq-editor {
+    flex-direction: column; /* Stack rows vertically on smaller screens */
+    gap: 10px; /* Reduce spacing */
+  }
+
+  .second-grid {
+    flex-direction: column; /* Stack columns vertically on small screens */
+  }
+
+  .faq-editor__category-section,
+  .faq-editor__questions-section {
+    width: 100%; /* Full width on smaller screens */
+    box-shadow: unset; /* Remove shadow on small screens */
+    border-radius: unset; /* Remove border radius on small screens */
+  }
 }

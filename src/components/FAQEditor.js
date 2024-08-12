@@ -11,10 +11,8 @@ import './FAQEditor.css';
 const FAQEditor = () => {
   const [categories, setCategories] = useState([]);
   const [questions, setQuestions] = useState([]);
-
   const [currentCategory, setCurrentCategory] = useState(null);
   const [currentQuestion, setCurrentQuestion] = useState(null);
-  
 
   const addCategory = (category) => {
     setCategories([...categories, category]);
@@ -56,12 +54,10 @@ const FAQEditor = () => {
     setCurrentQuestion(question);    
   };
 
-
   const filteredQuestions = currentCategory
     ? questions.filter((q) => q.categoryId === currentCategory.id)
     : [];
 
-  
   const onDragEnd = (result) => {
     const { destination, source, type } = result;
 
@@ -87,8 +83,6 @@ const FAQEditor = () => {
     reader.onload = (e) => {
       try {
         const data = JSON.parse(e.target.result);
-        
-        //console.log(data);
         loadFAQData(data, setCategories, setQuestions);
       } catch (error) {
         alert('Failed to load file. Please ensure it is a valid JSON.'+error);
@@ -104,26 +98,31 @@ const FAQEditor = () => {
 
   return (
     <div className="faq-editor">
-      <h1 className="faq-editor__heading">FAQ Editor</h1>
-      <div className="faq-editor__controls">
-        <input
-          type="file"
-          accept=".json"
-          onChange={handleFileUpload}
-          className="faq-editor__file-input"
-        />
-        <button
-          onClick={handleExport}
-          className="faq-editor__button faq-editor__export-button"
-        >
-          Export
-        </button>
+      <div className='first-grid'>
+       <div className='faq-editor-header'>
+        <h1 className="faq-editor__heading">FAQ Editor</h1>
+        <div className="faq-editor__controls">
+          <input
+            type="file"
+            accept=".json"
+            onChange={handleFileUpload}
+            className="faq-editor__file-input"
+          />
+          <button
+            onClick={handleExport}
+            className="faq-editor__button faq-editor__export-button"
+          >
+            Export
+          </button>
+        </div>
       </div>
+      </div>
+      <div className='second-grid'>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="categories" type="CATEGORY">
           {(provided) => (
             <div
-              className="faq-editor__category-list"
+              className="faq-editor__category-section"
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
@@ -145,7 +144,7 @@ const FAQEditor = () => {
         {currentCategory && (
           <Droppable droppableId="questions" type="QUESTION">
             {(provided) => (
-              <>
+              <div className="faq-editor__questions-section">
                 <h2 className="faq-editor__category-heading">
                   Manage Questions in "{currentCategory.name}"
                 </h2>
@@ -168,12 +167,13 @@ const FAQEditor = () => {
                   />
                   {provided.placeholder}
                 </div>
-              </>
+              </div>
             )}
           </Droppable>
-        )}        
+        )}
       </DragDropContext>
-    </div>    
+    </div>
+    </div>
   );
 };
 
