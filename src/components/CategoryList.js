@@ -8,7 +8,7 @@ const CategoryList = ({ categories, deleteCategory, selectCategory, provided }) 
   return (
     <div ref={provided.innerRef} {...provided.droppableProps} className="category-list">
       {categories.map((category, index) => (
-        <Draggable key={category.id} draggableId={category.id.toString()} index={index}>
+        <Draggable key={`category-${category.id}`} draggableId={`category-${category.id}`} index={index}>        
           {(provided) => (
             <div
               className="list-item"

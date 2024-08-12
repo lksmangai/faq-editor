@@ -7,7 +7,7 @@ const QuestionList = ({ questions, deleteQuestion, selectQuestion, provided }) =
   return (
     <div ref={provided.innerRef} {...provided.droppableProps} className="question-list">
       {questions.map((question, index) => (
-        <Draggable key={question.id} draggableId={question.id.toString()} index={index}>
+        <Draggable key={`question-${question.id}`} draggableId={`question-${question.id}`} index={index}>
           {(provided) => (
             <div
               className="list-item"
